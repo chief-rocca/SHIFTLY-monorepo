@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} font-sans antialiased text-zinc-100 bg-zinc-900`}>
+      <body suppressHydrationWarning={true} className={`${inter.className} font-sans antialiased text-zinc-100 bg-zinc-900`}>
         {children}
         <Toaster />
       </body>
