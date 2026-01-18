@@ -1,5 +1,5 @@
 {
-  "name": "cd ..",
+  "name": "shiftly",
   "private": true,
   "scripts": {
     "build": "turbo run build",
