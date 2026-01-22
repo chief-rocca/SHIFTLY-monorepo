@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { toast } from "sonner"
 import { useState } from "react"
-import { X, Upload, FileText, Image as ImageIcon } from "lucide-react"
+import { X, Upload, FileText, Image as ImageIcon, Check } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -312,7 +312,7 @@ export function JobPostingTemplateForm() {
                                 <FormControl>
                                     <select
                                         {...field}
-                                        className="flex h-10 w-full rounded-md border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-sm text-zinc-100 ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="flex h-10 w-full rounded-md border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-base text-zinc-100 ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                                     >
                                         <option value="">Select industry</option>
                                         {INDUSTRIES.map(industry => (
@@ -337,7 +337,7 @@ export function JobPostingTemplateForm() {
                                 <FormControl>
                                     <select
                                         {...field}
-                                        className="flex h-10 w-full rounded-md border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-sm text-zinc-100 ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="flex h-10 w-full rounded-md border border-zinc-700 bg-zinc-800/50 px-3 py-2 text-base text-zinc-100 ring-offset-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                                     >
                                         <option value="">Select occupation</option>
                                         {OCCUPATIONS.map(occupation => (
@@ -380,22 +380,25 @@ export function JobPostingTemplateForm() {
                                 <FormLabel>Benefits</FormLabel>
                                 <div className="space-y-2">
                                     {BENEFIT_OPTIONS.map(benefit => (
-                                        <div key={benefit.value} className="flex items-center space-x-2">
-                                            <input
-                                                type="checkbox"
-                                                id={benefit.value}
-                                                checked={field.value?.includes(benefit.value)}
-                                                onChange={(e) => {
-                                                    const current = field.value || []
-                                                    if (e.target.checked) {
-                                                        field.onChange([...current, benefit.value])
-                                                    } else {
-                                                        field.onChange(current.filter(v => v !== benefit.value))
-                                                    }
-                                                }}
-                                                className="h-4 w-4 rounded border-gray-300"
-                                            />
-                                            <label htmlFor={benefit.value} className="text-sm">
+                                        <div key={benefit.value} className="relative flex items-center space-x-2">
+                                            <div className="relative flex items-center">
+                                                <input
+                                                    type="checkbox"
+                                                    id={benefit.value}
+                                                    checked={field.value?.includes(benefit.value)}
+                                                    onChange={(e) => {
+                                                        const current = field.value || []
+                                                        if (e.target.checked) {
+                                                            field.onChange([...current, benefit.value])
+                                                        } else {
+                                                            field.onChange(current.filter(v => v !== benefit.value))
+                                                        }
+                                                    }}
+                                                    className="peer h-4 w-4 appearance-none rounded border border-zinc-700 bg-zinc-800/50 checked:bg-orange-500 checked:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-zinc-900 cursor-pointer"
+                                                />
+                                                <Check className="pointer-events-none absolute left-0 top-0 h-4 w-4 text-white opacity-0 peer-checked:opacity-100" strokeWidth={3} />
+                                            </div>
+                                            <label htmlFor={benefit.value} className="text-sm cursor-pointer select-none">
                                                 {benefit.label}
                                             </label>
                                         </div>
@@ -421,7 +424,7 @@ export function JobPostingTemplateForm() {
                                     }
                                 }}
                             />
-                            <Button type="button" onClick={addBringWithItem} variant="outline">
+                            <Button type="button" onClick={addBringWithItem} className="bg-zinc-800/50 border border-zinc-700 text-zinc-100 hover:bg-zinc-700 hover:text-white">
                                 Add
                             </Button>
                         </div>
@@ -460,7 +463,7 @@ export function JobPostingTemplateForm() {
                                     }
                                 }}
                             />
-                            <Button type="button" onClick={addEligibilityCriterion} variant="outline">
+                            <Button type="button" onClick={addEligibilityCriterion} className="bg-zinc-800/50 border border-zinc-700 text-zinc-100 hover:bg-zinc-700 hover:text-white">
                                 Add
                             </Button>
                         </div>
@@ -495,7 +498,7 @@ export function JobPostingTemplateForm() {
                                         type="file"
                                         accept={ACCEPTED_IMAGE_TYPES.join(",")}
                                         onChange={(e) => handleImageUpload(e, imageType)}
-                                        className="text-sm"
+                                        className="text-sm text-zinc-400 file:bg-zinc-800/50 file:text-zinc-100 file:border-0 file:rounded-md file:px-4 file:py-2 file:mr-4 file:font-medium file:hover:bg-zinc-700 cursor-pointer"
                                     />
                                     {workplaceImages.find(img => img.type === imageType) && (
                                         <div className="flex items-center gap-2 text-sm text-green-600">
