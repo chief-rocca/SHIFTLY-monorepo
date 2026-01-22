@@ -15,7 +15,8 @@ import {
   HelpCircle,
   Bell,
   X,
-  ArrowUp
+  ArrowUp,
+  UserPlus
 } from 'lucide-react';
 import Image from 'next/image';
 import { Sidebar } from '@/components/dashboard/Sidebar';
@@ -76,8 +77,15 @@ export default function Dashboard() {
             <div>
               <h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Quick Actions</h3>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                {/* Job Posting Template */}
+                {/* New Recruitment */}
                 <a href="#"
+                  className="flex flex-col gap-2 p-3 rounded-lg border border-zinc-800/60 bg-zinc-800/20 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all group">
+                  <UserPlus className="w-5 h-5 text-zinc-500 group-hover:text-orange-500 transition-colors" />
+                  <span className="text-xs font-medium text-zinc-300 group-hover:text-zinc-100">New Recruitment</span>
+                </a>
+
+                {/* Job Posting Template */}
+                <a href="/job-templates"
                   className="flex flex-col gap-2 p-3 rounded-lg border border-zinc-800/60 bg-zinc-800/20 hover:bg-zinc-800/50 hover:border-zinc-700 transition-all group">
                   <FilePlus className="w-5 h-5 text-zinc-500 group-hover:text-orange-500 transition-colors" />
                   <span className="text-xs font-medium text-zinc-300 group-hover:text-zinc-100">Job Templates</span>
