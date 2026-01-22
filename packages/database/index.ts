@@ -13,3 +13,6 @@ export type Shift = {
     pay_rate: number;
     created_at: string;
 };
+
+// Export job posting template types
+export * from './types';
