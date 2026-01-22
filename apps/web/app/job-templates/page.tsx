@@ -159,8 +159,8 @@ Auto Message: ${template.auto_message || 'N/A'}`
                                                     key={page}
                                                     onClick={() => handlePageChange(page)}
                                                     className={`w-8 h-8 text-sm rounded-md border transition-colors ${currentPage === page
-                                                            ? 'bg-orange-500 border-orange-500 text-white'
-                                                            : 'border-zinc-800 bg-zinc-800/30 hover:bg-zinc-800/60'
+                                                        ? 'bg-orange-500 border-orange-500 text-white'
+                                                        : 'border-zinc-800 bg-zinc-800/30 hover:bg-zinc-800/60'
                                                         }`}
                                                 >
                                                     {page}
@@ -224,7 +224,7 @@ Auto Message: ${template.auto_message || 'N/A'}`
                                                 alt="Template"
                                                 width={96}
                                                 height={96}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-contain p-2"
                                             />
                                         </div>
 
