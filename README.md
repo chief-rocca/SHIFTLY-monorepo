@@ -1,135 +1,192 @@
-# SHIFTLY Monorepo
+# SHIFTLY
 
-This Turborepo starter is maintained by the Turborepo core team.
+**Democratising job opportunities by optimising the relationships between job seekers and employers.**
 
-## Using this example
+SHIFTLY is a platform that connects job seekers with short-term and flexible work opportunities, making it easier for employers to find qualified candidates and for workers to discover jobs that match their skills and availability.
 
-Run the following command:
+## 🏗️ Architecture
 
-\`\`\`sh
-npx create-turbo@latest
-\`\`\`
+This is a monorepo managed with [Turborepo](https://turborepo.dev/), containing web, mobile, and shared packages for the SHIFTLY platform.
 
-## What's inside?
+### Apps
 
-This Turborepo includes the following packages/apps:
+- **`apps/web`** - Next.js web application for employer portal and job management
+- **`apps/mobile`** - React Native (Expo) mobile app for job seekers
+- **`apps/docs`** - Documentation site (Next.js)
 
-### Apps and Packages
+### Packages
 
-- \`docs\`: a [Next.js](https://nextjs.org/) app
-- \`web\`: another [Next.js](https://nextjs.org/) app
-- \`@repo/ui\`: a stub React component library shared by both \`web\` and \`docs\` applications
-- \`@repo/eslint-config\`: \`eslint\` configurations (includes \`eslint-config-next\` and \`eslint-config-prettier\`)
-- \`@repo/typescript-config\`: \`tsconfig.json\`s used throughout the monorepo
+- **`packages/database`** - Shared Supabase client and TypeScript types for database schemas
+- **`packages/ui`** - Shared React component library
+- **`packages/eslint-config`** - Shared ESLint configurations
+- **`packages/typescript-config`** - Shared TypeScript configurations
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🛠️ Tech Stack
 
-### Utilities
+### Frontend
 
-This Turborepo has some additional tools already setup for you:
+| Technology | Purpose |
+|------------|---------|
+| **Next.js 16** | Production-ready React framework for the web app with server-side rendering and optimized performance |
+| **React Native (Expo)** | Cross-platform mobile development framework for iOS and Android with native capabilities |
+| **TypeScript** | Type-safe development across all packages to catch errors early and improve code quality |
+| **Tailwind CSS** | Utility-first CSS framework for rapid UI development with consistent design tokens |
+| **NativeWind** | Tailwind CSS for React Native, enabling design system consistency across web and mobile |
+| **shadcn/ui** | High-quality, accessible React components built on Radix UI primitives |
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+### Backend & Infrastructure
 
-### Build
+| Technology | Purpose |
+|------------|---------|
+| **Supabase** | PostgreSQL database with real-time subscriptions, authentication, and storage - chosen for rapid development and built-in features |
+| **Vercel** | Deployment platform for Next.js apps with edge functions and automatic optimization |
 
-To build all apps and packages, run the following command:
+### State Management & Forms
 
-\`\`\`
-cd my-turborepo
+| Technology | Purpose |
+|------------|---------|
+| **React Hook Form** | Performant form validation with minimal re-renders |
+| **Zod** | TypeScript-first schema validation for runtime type safety |
 
-# With [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+### Development Tools
 
-# Without [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-\`\`\`
+| Technology | Purpose |
+|------------|---------|
+| **Turborepo** | High-performance build system for monorepos with intelligent caching |
+| **ESLint** | Code linting to maintain consistent code quality |
+| **Prettier** | Code formatting for consistency across the codebase |
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+### UI Components & Icons
 
-\`\`\`
-# With [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+| Technology | Purpose |
+|------------|---------|
+| **Lucide React** | Beautiful, consistent icon library for web |
+| **Lucide React Native** | Native-optimized icons for mobile |
+| **next-themes** | Dark mode support with system preference detection |
 
-# Without [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-\`\`\`
+## 🚀 Getting Started
 
-### Develop
+### Prerequisites
 
-To develop all apps and packages, run the following command:
+- **Node.js** >= 18
+- **npm** 10.9.3 or higher
+- **iOS Simulator** (for iOS development)
+- **Android Studio** (for Android development)
 
-\`\`\`
-cd my-turborepo
+### Installation
 
-# With [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/SHIFTLY-monorepo.git
+cd SHIFTLY-monorepo
+```
 
-# Without [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-\`\`\`
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+3. Set up environment variables:
+   - Copy `.env.example` to `.env` in each app directory
+   - Add your Supabase credentials and other required environment variables
 
-\`\`\`
-# With [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+### Development
 
-# Without [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
+Run all apps in development mode:
+```bash
+npm run dev
+```
+
+Run a specific app:
+```bash
+# Web app
 npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-\`\`\`
 
-### Remote Caching
+# Mobile app
+cd apps/mobile
+npm run ios       # iOS
+npm run android   # Android
+```
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Building
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Build all apps and packages:
+```bash
+npx turbo build
+```
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+Build a specific app:
+```bash
+npx turbo build --filter=web
+```
 
-\`\`\`
-cd my-turborepo
+## 📱 Mobile App
 
-# With [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+The mobile app is built with Expo and React Native, targeting both iOS and Android platforms.
 
-# Without [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-\`\`\`
+### Running on Devices
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+**iOS:**
+```bash
+cd apps/mobile
+npm run ios
+```
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+**Android:**
+```bash
+cd apps/mobile
+npm run android
+```
 
-\`\`\`
-# With [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+**Development Server:**
+```bash
+cd apps/mobile
+npm start
+```
 
-# Without [global \`turbo\`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-\`\`\`
+## 🗄️ Database
 
-## Useful Links
+The platform uses Supabase (PostgreSQL) for data storage. Database migrations are located in the root directory:
 
-Learn more about the power of Turborepo:
+- `supabase_migration_job_templates.sql` - Job posting templates schema
+- `supabase_migration_job_postings.sql` - Job postings schema
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+### Key Database Features
+
+- **Job Posting Templates** - Reusable templates for common job types
+- **Job Postings** - Active job listings with scheduling and applicant management
+- **Experience Groups** - Targeted job visibility based on worker experience
+- **Visibility Controls** - Public/private job postings with certification requirements
+
+## 📝 Code Quality
+
+The project uses ESLint and TypeScript for code quality:
+
+```bash
+# Lint all packages
+npm run lint
+
+# Type check
+npm run check-types
+
+# Format code
+npm run format
+```
+
+## 🤝 Contributing
+
+1. Create a feature branch from `main`
+2. Make your changes
+3. Ensure all tests pass and code is properly formatted
+4. Submit a pull request
+
+## 📄 License
+
+This project is private and proprietary.
+
+## 🔗 Useful Links
+
+- [Turborepo Documentation](https://turborepo.dev/docs)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Expo Documentation](https://docs.expo.dev/)
+- [Supabase Documentation](https://supabase.com/docs)
